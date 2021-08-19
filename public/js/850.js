@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[850],{6850:(e,n,l)=>{l.r(n),l.d(n,{default:()=>r});var u=l(5166);const c={render:function(e,n,l,c,r,t){return(0,u.openBlock)(),(0,u.createElementBlock)("h1",null,"Olá Mundo!!")}},r=c}}]);
