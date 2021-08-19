@@ -13,17 +13,36 @@
             cadastre-se é GRÁTIS!
           </a>
         </p>
+
+        <p class="mt-2 text-center text-sm text-red-500" v-show="$page.props.flash.message">
+          {{ $page.props.flash.message }}
+        </p>
       </div>
       <Form @submit="onSubmit" class="mt-8 space-y-6" v-slot="{ errors }">
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
             <label for="email" class="sr-only">E-amil</label>
-            <Field name="email" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="E-mail" :class="{ 'border-red-500': errors.email }" :rules="{ email: true, required: true }" />
+            <Field
+              name="email"
+              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              placeholder="E-mail"
+              :class="{ 'border-red-500': errors.email }"
+              :rules="{ email: true, required: true }"
+              v-model="formLogin.email"
+            />
             <!-- <ErrorMessage name="email" class="mb-2 text-xs text-red-600" as="p" /> -->
           </div>
           <div>
             <label for="password" class="sr-only">Senha</label>
-            <Field name="password" type="password" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" :class="{ 'border-red-500': errors.password }" placeholder="Senha" :rules="{ required: true }" />
+            <Field
+              name="password"
+              type="password"
+              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              :class="{ 'border-red-500': errors.password }"
+              placeholder="Senha"
+              :rules="{ required: true }"
+              v-model="formLogin.senha"
+            />
             <!-- <ErrorMessage name="password" class="mb-2 text-xs text-red-600" as="p" /> -->
           </div>
         </div>
@@ -60,9 +79,17 @@ export default {
     Field,
     ErrorMessage,
   },
+  data() {
+    return{
+      formLogin: {
+        email: null,
+        senha: null
+      }
+    }
+  },
   methods: {
       onSubmit() {
-          alert('ok')
+        this.$inertia.post(route('auth.login'), this.formLogin)
       }
   }
 }

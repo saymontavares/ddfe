@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -16,4 +19,13 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Index');
-});
+})->name('auth');
+
+Route::post('/auth', function (Request $request) {
+    if (Auth::attempt(['email' => $request->email, 'password' => $request->senha])) {
+        $request->session()->regenerate();
+        return redirect()->intended('dashboard');
+    }
+
+    return Redirect::route('auth')->with('message', 'Usuário e/ou senha incorreto');
+})->name('auth.login');

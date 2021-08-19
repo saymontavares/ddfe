@@ -16,7 +16,7 @@ class HandleInertiaRequests extends Middleware
     protected $rootView = 'app';
 
     /**
-     * Determines the current asset version.
+     * Determines the current asset .version
      *
      * @see https://inertiajs.com/asset-versioning
      * @param  \Illuminate\Http\Request  $request
@@ -37,7 +37,11 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request)
     {
         return array_merge(parent::share($request), [
-            //
+            'appName' => config('app.name'),
+            'auth.user' => $request->user() ? $request->user()->only('id', 'name', 'email') : null,
+            'flash' => [
+                'message' => $request->session()->get('message')
+            ],
         ]);
     }
 }
