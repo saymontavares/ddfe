@@ -1,12 +1,15 @@
 <template>
     <h1>Bem vindo ao painel</h1>
-    <a :href="route('auth.logout')">Logout</a>
+    <Link :href="route('auth.logout')">Home</Link>
 </template>
 
 <script>
+import { Link } from '@inertiajs/inertia-vue3'
 
 export default {
-
+    components: {
+        Link
+    }
 }
 </script>
 
