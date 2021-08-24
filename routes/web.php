@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Authentication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -17,15 +18,10 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Index');
-})->name('auth');
+Route::get('/', [Authentication::class, 'index'])->name('auth');
+Route::post('/auth', [Authentication::class, 'auth'])->name('auth.login');
+Route::get('/logout', [Authentication::class, 'logout'])->name('auth.logout');
 
-Route::post('/auth', function (Request $request) {
-    if (Auth::attempt(['email' => $request->email, 'password' => $request->senha])) {
-        $request->session()->regenerate();
-        return redirect()->intended('dashboard');
-    }
-
-    return Redirect::route('auth')->with('message', 'Usuário e/ou senha incorreto');
-})->name('auth.login');
+Route::get('/dash', function () {
+    return Inertia::render('Dashboard');
+})->name('dash')->middleware('auth');

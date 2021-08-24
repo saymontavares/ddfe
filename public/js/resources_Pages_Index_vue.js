@@ -7219,15 +7219,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      formLogin: {
+      formLogin: this.$inertia.form({
         email: null,
         senha: null
-      }
+      })
     };
   },
   methods: {
     onSubmit: function onSubmit() {
-      this.$inertia.post(route('auth.login'), this.formLogin);
+      this.formLogin.post(route('auth.login'));
     }
   }
 });
@@ -7269,7 +7269,7 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "mt-2 text-center text-sm text-gray-600"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Ou " + /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(' ') + " "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Ou "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#",
   "class": "font-medium text-indigo-600 hover:text-indigo-500"
 }, " cadastre-se é GRÁTIS! ")], -1
@@ -7305,10 +7305,7 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_10 = {
-  type: "submit",
-  "class": "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-};
+var _hoisted_10 = ["disabled"];
 var _hoisted_11 = {
   "class": "absolute left-0 inset-y-0 flex items-center pl-3"
 };
@@ -7324,9 +7321,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_3, _hoisted_4, _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
     "class": "mt-2 text-center text-sm text-red-500"
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.flash.message), 513
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.errors.auth), 513
   /* TEXT, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, _ctx.$page.props.flash.message]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Form, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, _ctx.$page.props.errors.auth]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Form, {
     onSubmit: $options.onSubmit,
     "class": "mt-8 space-y-6"
   }, {
@@ -7364,10 +7361,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, null, 8
       /* PROPS */
-      , ["class", "modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <ErrorMessage name=\"password\" class=\"mb-2 text-xs text-red-600\" as=\"p\" /> ")])]), _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_LockClosedIcon, {
+      , ["class", "modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <ErrorMessage name=\"password\" class=\"mb-2 text-xs text-red-600\" as=\"p\" /> ")])]), _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        type: "submit",
+        "class": "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+        disabled: $data.formLogin.processing
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_LockClosedIcon, {
         "class": "h-5 w-5 text-indigo-500 group-hover:text-indigo-400",
         "aria-hidden": "true"
-      })]), _hoisted_12])])];
+      })]), _hoisted_12], 8
+      /* PROPS */
+      , _hoisted_10)])];
     }),
     _: 1
     /* STABLE */

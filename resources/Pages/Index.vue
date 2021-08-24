@@ -8,14 +8,12 @@
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600">
           Ou
-          {{ ' ' }}
           <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
             cadastre-se é GRÁTIS!
           </a>
         </p>
-
-        <p class="mt-2 text-center text-sm text-red-500" v-show="$page.props.flash.message">
-          {{ $page.props.flash.message }}
+        <p class="mt-2 text-center text-sm text-red-500" v-show="$page.props.errors.auth">
+          {{ $page.props.errors.auth }}
         </p>
       </div>
       <Form @submit="onSubmit" class="mt-8 space-y-6" v-slot="{ errors }">
@@ -56,7 +54,10 @@
         </div>
 
         <div>
-          <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <button
+            type="submit"
+            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            :disabled="formLogin.processing">
             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
               <LockClosedIcon class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
             </span>
@@ -81,15 +82,15 @@ export default {
   },
   data() {
     return{
-      formLogin: {
+      formLogin: this.$inertia.form({
         email: null,
         senha: null
-      }
+      })
     }
   },
   methods: {
       onSubmit() {
-        this.$inertia.post(route('auth.login'), this.formLogin)
+        this.formLogin.post(route('auth.login'))
       }
   }
 }

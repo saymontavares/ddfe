@@ -20598,10 +20598,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "Ziggy": () => (/* binding */ Ziggy)
 /* harmony export */ });
 var Ziggy = {
-  "url": "http:\/\/localhost",
-  "port": null,
+  "url": "http:\/\/localhost:8000",
+  "port": 8000,
   "defaults": {},
-  "routes": []
+  "routes": {
+    "auth": {
+      "uri": "\/",
+      "methods": ["GET", "HEAD"]
+    },
+    "auth.login": {
+      "uri": "auth",
+      "methods": ["POST"]
+    },
+    "auth.logout": {
+      "uri": "logout",
+      "methods": ["GET", "HEAD"]
+    },
+    "dash": {
+      "uri": "dash",
+      "methods": ["GET", "HEAD"]
+    }
+  }
 };
 
 if (typeof window !== 'undefined' && typeof window.Ziggy !== 'undefined') {
@@ -46701,6 +46718,14 @@ function compileToFunction(template, options) {
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
+	"./Dashboard": [
+		"./resources/Pages/Dashboard.vue",
+		"resources_Pages_Dashboard_vue"
+	],
+	"./Dashboard.vue": [
+		"./resources/Pages/Dashboard.vue",
+		"resources_Pages_Dashboard_vue"
+	],
 	"./Index": [
 		"./resources/Pages/Index.vue",
 		"resources_Pages_Index_vue"
@@ -46847,7 +46872,7 @@ module.exports = webpackAsyncContext;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + "bd464d26b4290b16fbc3" + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_Pages_Dashboard_vue":"819b62e2df540b75b3c6","resources_Pages_Index_vue":"55ea9ce02a2ccd819dee"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	
